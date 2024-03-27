@@ -25,15 +25,6 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ['first_name', 'last_name', 'email']
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     if self.instance:
-    #         try:
-    #             user_account = self.instance.account
-    #         except UserAccount.DoesNotExist:
-    #             user_account = None
-    #             user_address = None
-
     def save(self, commit=True):
         user = super().save(commit=False)
         if commit:

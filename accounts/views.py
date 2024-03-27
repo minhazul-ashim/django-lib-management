@@ -18,7 +18,6 @@ class UserRegistrationView(FormView):
         print(form.cleaned_data)
         user = form.save()
         login(self.request, user)
-        print(user)
         return super().form_valid(form)
     
 class UserLoginView(LoginView):
