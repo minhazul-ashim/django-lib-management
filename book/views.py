@@ -22,7 +22,7 @@ class BookDetailView(DetailView):
         context['canReview'] = False
         if self.request.user.is_authenticated:
             try:
-                borrow = Borrow.objects.get(book=context['book'], user=self.request.user)
+                borrow = Borrow.objects.filter(book=context['book'], user=self.request.user)
                 context['canReview'] = True
             except Borrow.DoesNotExist:
                 pass

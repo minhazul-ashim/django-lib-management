@@ -30,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-CSRF_TRUSTED_ORIGINS = ["https://django-lib-management-1.onrender.com/"]
+CSRF_TRUSTED_ORIGINS = ["https://django-lib-management-1.onrender.com"]
 
 
 # Application definition
