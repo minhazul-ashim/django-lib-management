@@ -23,11 +23,11 @@
         <div class=" flex-grow-1">
             <h4>Other Reviews</h4>
             <div class="me-5">
-                {% for comment in comments %}
+                {% for review in reviews %}
                 <div class="border rounded shadow px-5 py-3 my-2">
-                    <h6>Comment By : {{comment.name}}</h6>
-                    <p>{{comment.comment}}</p>
-                    <small>Commented on : {{comment.createdAt}}</small>
+                    <h6>Review By : {{review.name}}</h6>
+                    <p>{{review.review}}</p>
+                    <small>Posted on : {{review.createdAt}}</small>
                 </div>
             {% endfor %}
             </div>
