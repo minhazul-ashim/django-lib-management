@@ -9,12 +9,13 @@
             <div class="">
                 {% for category in categories %}
                     <div class="my-4">
-                        <h6>{{category.name}}</h6>
+                        <a class="text-lg text-dark fw-bold" style="text-decoration: none;" href="{% url 'categoryWise' category.id %}">{{category.name}}</a>
                     </div>
                 {% endfor %}
             </div>
         </div>
-        <div class="col-9 row">
+        <div class="col-9 row py-3">
+            <h4>We offer these books</h4>
             {% for book in books %}
                 <div class="col-4 border mx-2 rounded mb-4" style="width: 18rem;">
                     <img src="media/{{book.image.url}}'" class="card-img-top" alt="...">

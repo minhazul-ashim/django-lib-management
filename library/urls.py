@@ -5,6 +5,7 @@ from . import views;
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomePageView.as_view(), name="homePage"),
+    path('category/<int:id>', views.HomePageView.as_view(), name="categoryWise"),
     path('accounts/', include('accounts.urls')),
     path('transactions/', include('transactions.urls')),
     path('book/', include('book.urls')),
