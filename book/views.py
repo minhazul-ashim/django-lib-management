@@ -33,4 +33,4 @@ class BorrowBook(DetailView):
         user.balance -= book.price
         user.save()
         borrow = Borrow.objects.create(user=request.user, book=book)
-        return redirect('detailPage', pk=book.pk)
+        return redirect('profile', pk=book.pk)

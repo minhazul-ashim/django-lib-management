@@ -35,7 +35,8 @@ class UserAccountUpdateView(View):
 
     def get(self, request):
         form = UserUpdateForm(instance=request.user)
-        return render(request, self.template_name, {'form': form})
+        borrows = Borrow.objects.filter(user=request.user);
+        return render(request, self.template_name, {'form': form, 'borrows': borrows})
 
     def post(self, request):
         form = UserUpdateForm(request.POST, instance=request.user)
@@ -43,8 +44,3 @@ class UserAccountUpdateView(View):
             form.save()
             return redirect('profile')
         return render(request, self.template_name, {'form': form})
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['borrows'] = Borrow.objects.filter(user=self.request.user)
-        return context;
