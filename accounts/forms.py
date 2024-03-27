@@ -19,37 +19,24 @@ class UserRegisterForm(UserCreationForm) :
 
 
 
-# class UserUpdateForm(forms.ModelForm):
-#     class Meta:
-#         model = User
-#         fields = ['first_name', 'last_name', 'email']
+class UserUpdateForm(forms.ModelForm):
 
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         if self.instance:
-#             try:
-#                 user_account = self.instance.account
-#             except UserAccount.DoesNotExist:
-#                 user_account = None
-#                 user_address = None
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
 
-#     def save(self, commit=True):
-#         user = super().save(commit=False)
-#         if commit:
-#             user.save()
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     if self.instance:
+    #         try:
+    #             user_account = self.instance.account
+    #         except UserAccount.DoesNotExist:
+    #             user_account = None
+    #             user_address = None
 
-#             user_account, created = UserAccount.objects.get_or_create(user=user) # jodi account thake taile seta jabe user_account ar jodi account na thake taile create hobe ar seta created er moddhe jabe
-#             user_address, created = UserAccount.objects.get_or_create(user=user) 
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        if commit:
+            user.save()
 
-#             user_account.account_type = self.cleaned_data['account_type']
-#             user_account.gender = self.cleaned_data['gender']
-#             user_account.birth_date = self.cleaned_data['birth_date']
-#             user_account.save()
-
-#             user_address.street_address = self.cleaned_data['street_address']
-#             user_address.city = self.cleaned_data['city']
-#             user_address.postal_code = self.cleaned_data['postal_code']
-#             user_address.country = self.cleaned_data['country']
-#             user_address.save()
-
-#         return user
+        return user

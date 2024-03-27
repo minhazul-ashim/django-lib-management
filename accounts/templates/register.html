@@ -6,6 +6,8 @@
     <form action="" method="POST" class="w-50 mx-auto shadow-sm border p-5 rounded my-5">
         {% csrf_token %}
         {{form | crispy}}
+        
+        <button class="btn btn-outline-primary" type="submit">Submit</button>
     </form>
 </div>
 {% endblock %}
