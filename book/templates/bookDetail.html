@@ -9,7 +9,7 @@
     </div>
     
     <div class="col-7">
-      <h2>Model : {{book.title}}</h2>
+      <h2>Name : {{book.title}}</h2>
       <p>
         {{book.description}}
       </p>
@@ -36,7 +36,7 @@
               {% endfor %}
             </div>
         </div>
-        {% if canReview and user.is_authenticated %}
+        {% if canReview %}
         <div class="flex-1">
             <h4>Leave a review</h4>
             <form action="{% url 'createReview' book.id %}" method="POST">
@@ -45,6 +45,10 @@
                 <button class="btn btn-secondary" type="submit">Submit</button>
             </form>
         </div>
+        {% else %}
+          <div class="">
+            
+          </div>
         {% endif %}
     </div>
   </div>

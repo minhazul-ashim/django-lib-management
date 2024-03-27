@@ -14,9 +14,8 @@ class UserRegistrationView(FormView):
     form_class = UserRegisterForm
     success_url = reverse_lazy('profile')
     
-    def form_valid(self,form):
-        print(form.cleaned_data)
-        user = form.save()
+    def form_valid(self, form):
+        user = form.save(request=self.request)
         login(self.request, user)
         return super().form_valid(form)
     
