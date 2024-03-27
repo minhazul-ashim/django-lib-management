@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <div class="container-fluid my-5">
     <div class="row mx-3">
@@ -18,7 +18,7 @@
             <h4>We offer these books</h4>
             {% for book in books %}
                 <div class="col-4 border mx-2 rounded mb-4" style="width: 18rem;">
-                    <img src="{{book.image.url}}'" class="card-img-top" alt="...">
+                    <img src="{% static 'book.jpg' %}" class="card-img-top mb-2" alt="...">
                     <div class="card-body pb-3">
                         <h5 class="card-title">{{book.title}}</h5>
                         <p class="card-text">{{book.description | truncatewords:10}}</p>
