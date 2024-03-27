@@ -8,6 +8,5 @@ class ListBorrows(ListView) :
     model = models.Borrow;
     context_object_name = 'orders'
 
-
 def createBorrow(request) :
     pass;

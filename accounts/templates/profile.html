@@ -4,17 +4,23 @@
 {% if user.is_authenticated %}
 <div class="container-fluid my-5 d-flex">
   <div class="flex-grow-1 me-5">
+       
+    <div class="shadow rounded border px-4 py-4 mb-3">
+      <h5 class="text-success">Available Balance : ${{balance}}</h5>
+    </div>
     <h4 class="mb-4">Borrow History</h4>
     <div class="">
-      
-  <div class="shadow rounded border px-4 py-4">
-    <h5>Available Balance : ${{balance}}</h5>
-  </div>
       {% for borrow in borrows %}
         <div class="my-2 shadow-sm border px-4 py-2 rounded">
           <h4>{{borrow.book.title}}</h4>
           <h6>Price : {{borrow.book.price}} USD</h6>
-          <small>Placed on : {{borrow.createdAt}}</small>
+          <p class="text-sm">Placed on : {{borrow.createdAt}}</p>
+
+          {% if borrow.is_returned %}
+            <p class=" d-inline-block">Returned</p>
+          {% else %}
+            <a href="{% url 'bookReturn' borrow.id %}" class="btn btn-warning d-inline-block">Return</a>
+          {% endif %}
         </div>
       {% endfor %}
     </div>

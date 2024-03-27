@@ -6,7 +6,7 @@ from review.models import Review
 from accounts.models import UserAccount;
 from borrow.models import Borrow;
 from book.models import Book;
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_GET
 from django.utils.decorators import method_decorator
 
 class BookDetailView(DetailView):
@@ -40,3 +40,17 @@ class BorrowBook(DetailView):
         user.save()
         borrow = Borrow.objects.create(user=request.user, book=book)
         return redirect('profile', pk=book.pk)
+    
+
+
+@method_decorator(require_GET, name='dispatch')
+class ReturnBook(DetailView):
+    model = Borrow
+    def get(self, request, *args, **kwargs):
+        borrowObj = self.get_object()
+        user = UserAccount.objects.get(user=request.user)
+        user.balance += borrowObj.book.price
+        user.save()
+        borrowObj.is_returned = True;
+        borrowObj.save();
+        return redirect('profile')
