@@ -15,7 +15,10 @@
       <h2>Price : ${{book.price}}</h2>
       <h2>Category : {{book.category.name}}</h2>
       {% if user.is_authenticated %}
-          <button type="submit" class="btn btn-info my-2">Borrow now</button>
+      <form action="{% url 'borrowBook' book.id %}" method="POST" style="display: inline;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-info">Borrow</button>
+      </form>
       {% endif %}
     </div>
 

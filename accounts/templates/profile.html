@@ -1,12 +1,30 @@
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
-
-{% block content %}
-<div class="container-fluid">
-    <form action="" method="POST" class="w-50 mx-auto shadow-sm border p-5 rounded my-5">
-        {% csrf_token %}
-        {{form | crispy}}
-        <button class="btn btn-outline-primary" type="submit">Submit</button>
-    </form>
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %} 
+{% block content %} 
+{% if user.is_authenticated %}
+<div class="container-fluid my-5 d-flex">
+  <div class="flex-grow-1 me-5">
+    <h4 class="mb-4">Borrow History</h4>
+    <div class="">
+      {% for borrow in borrows %}
+        <div class="my-2 shadow-sm border px-4 py-2 rounded">
+          <h4>{{borrow.book.title}}</h4>
+          <h6>Price : {{borrow.book.price}} USD</h6>
+          <small>Placed on : {{borrow.createdAt}}</small>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="">
+    <form action="" method="POST" class="shadow rounded border mx-auto p-5">
+    <h4 class="mb-4">Update Information</h4>
+    {% csrf_token %} {{form | crispy}}
+    <button class="btn btn-outline-info" type="submit">Submit</button>
+  </form>
+  </div>
 </div>
-{% endblock %}
+{% else %}
+<div class="container-fluid">
+  <h2 class="text-center text-danger">Logged Out Successfully</h2>
+</div>
+{% endif %} {% endblock %}

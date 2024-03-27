@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views import View
 from django.shortcuts import redirect
+from borrow.models import Borrow;
 
 class UserRegistrationView(FormView):
     template_name = 'register.html'
@@ -42,3 +43,8 @@ class UserAccountUpdateView(View):
             form.save()
             return redirect('profile')
         return render(request, self.template_name, {'form': form})
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['borrows'] = Borrow.objects.filter(user=self.request.user)
+        return context;
