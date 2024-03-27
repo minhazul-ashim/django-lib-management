@@ -6,7 +6,7 @@
   <div class="flex-grow-1 me-5">
        
     <div class="shadow rounded border px-4 py-4 mb-3">
-      <h5 class="text-success">Available Balance : ${{balance}}</h5>
+      <h5 class="text-success fw-bold">Available Balance : ${{balance}}</h5>
     </div>
     <h4 class="mb-4">Borrow History</h4>
     <div class="">
@@ -17,7 +17,7 @@
           <p class="text-sm">Placed on : {{borrow.createdAt}}</p>
 
           {% if borrow.is_returned %}
-            <p class=" d-inline-block">Returned</p>
+            <p class=" d-inline-block fw-bold text-success">Returned</p>
           {% else %}
             <a href="{% url 'bookReturn' borrow.id %}" class="btn btn-warning d-inline-block">Return</a>
           {% endif %}
