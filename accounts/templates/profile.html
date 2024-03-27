@@ -6,6 +6,10 @@
   <div class="flex-grow-1 me-5">
     <h4 class="mb-4">Borrow History</h4>
     <div class="">
+      
+  <div class="shadow rounded border px-4 py-4">
+    <h5>Available Balance : ${{balance}}</h5>
+  </div>
       {% for borrow in borrows %}
         <div class="my-2 shadow-sm border px-4 py-2 rounded">
           <h4>{{borrow.book.title}}</h4>

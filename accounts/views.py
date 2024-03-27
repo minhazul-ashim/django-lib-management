@@ -4,6 +4,7 @@ from .forms import UserRegisterForm, UserUpdateForm
 from django.contrib.auth import login, logout
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView
+from accounts.models import UserAccount
 from django.views import View
 from django.shortcuts import redirect
 from borrow.models import Borrow;
@@ -36,7 +37,8 @@ class UserAccountUpdateView(View):
     def get(self, request):
         form = UserUpdateForm(instance=request.user)
         borrows = Borrow.objects.filter(user=request.user);
-        return render(request, self.template_name, {'form': form, 'borrows': borrows})
+        balance = UserAccount.objects.get(user=self.request.user).balance;
+        return render(request, self.template_name, {'form': form, 'borrows': borrows, 'balance' : balance})
 
     def post(self, request):
         form = UserUpdateForm(request.POST, instance=request.user)

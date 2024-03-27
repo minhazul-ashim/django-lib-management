@@ -1,6 +1,7 @@
 from typing import Any
 from django.views.generic import TemplateView;
 from book.models import Book;
+from accounts.models import UserAccount;
 from category.models import Category;
 
 class HomePageView(TemplateView):
@@ -15,6 +16,5 @@ class HomePageView(TemplateView):
             context['books'] = Book.objects.filter(category=category)
         else:
             context['books'] = Book.objects.all()
-
         context['categories'] = Category.objects.all()
         return context
