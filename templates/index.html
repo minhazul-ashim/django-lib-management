@@ -1,7 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="">
-<h2>This is homepage</h2>
+<div class="container-fluid my-5">
+    <div class="row">
+        <div class="col-3 border px-2 py-3 rounded shadow-sm">
+            <h4>Our Categories</h4>
+
+            <div class="">
+                {% for category in categories %}
+                    <div class="my-4">
+                        <h6>{{category.name}}</h6>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-9 row g-3">
+            {% for book in books %}
+                <div class="col-4 border mx-2" style="width: 18rem;">
+                    <img src="f'media/{{book.image.url}}'" class="card-img-top" alt="...">
+                    <div class="card-body pb-3">
+                        <h5 class="card-title">{{book.title}}</h5>
+                        <p class="card-text">{{book.description | truncatewords:10}}</p>
+                        <a href="{% url 'detailPage' book.id %}" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 {% endblock %}

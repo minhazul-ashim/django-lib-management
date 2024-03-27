@@ -10,4 +10,5 @@ urlpatterns = [
     path('book/', include('book.urls')),
     path('category/', include('category.urls')),
     path('borrow/', include('borrow.urls')),
+    path('review/', include('review.urls')),
 ]

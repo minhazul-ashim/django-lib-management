@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'book',
     'category',
     'borrow',
+    'review',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

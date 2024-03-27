@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid my-5">
+    <div class="row">
+    <div class="col-5">
+      <img src="{{book.image.url}}" class="img-fluid object-fit-contain" alt="" />
+    </div>
+    
+    <div class="col-7">
+      <h2>Model : {{book.title}}</h2>
+      <p>
+        {{book.description}}
+      </p>
+      <h2>Price : ${{book.price}}</h2>
+      <h2>Category : {{book.category.name}}</h2>
+      {% if user.is_authenticated %}
+          <button type="submit" class="btn btn-info my-2">Borrow now</button>
+      {% endif %}
+    </div>
+
+    <div class="d-flex mt-5">
+        <div class=" flex-grow-1">
+            <h4>Other Reviews</h4>
+            <div class="me-5">
+                {% for comment in comments %}
+                <div class="border rounded shadow px-5 py-3 my-2">
+                    <h6>Comment By : {{comment.name}}</h6>
+                    <p>{{comment.comment}}</p>
+                    <small>Commented on : {{comment.createdAt}}</small>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="flex-1">
+            <h4>Leave a review</h4>
+            <form action="/review/create/" method="POST">
+                {% csrf_token %}
+                {{form | crispy}}
+                <button class="btn btn-secondary" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
