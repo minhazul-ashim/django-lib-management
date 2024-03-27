@@ -6,5 +6,5 @@ from django.conf.urls.static import static;
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('create/', views.ReviewCreateView.as_view(), name="createReview")
+    path('create/<int:id>', views.ReviewCreateView.as_view(), name="createReview")
 ]
