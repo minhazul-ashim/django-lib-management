@@ -9,7 +9,7 @@ class BookDetailView(DetailView) :
     pk_url_kwarg = 'pk';
     template_name = 'bookDetail.html';
     context_object_name = 'book';
-
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = ReviewForm
