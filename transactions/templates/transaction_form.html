@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block head_title %} {{ title }}  {% endblock %} {% load crispy_forms_tags %} {% block content %}
+
+<div class="w-full flex mt-5 justify-center ">
+        <form method="post" class="px-8 pt-6 pb-8 mb-4">
+            {% csrf_token %}
+
+            {form | crispy}
+        </form>
+    </div>
+{% endblock %}
